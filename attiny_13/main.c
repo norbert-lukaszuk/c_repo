@@ -17,7 +17,7 @@ if( TCNT0>250){ // if button pushed call blink function
 	repeatCount++;
 //	PORTB ^= 1<<LED;
 
-	if(repeatCount>32){
+	if(repeatCount>64){
 		PORTB ^= 1<<LED;
 		repeatCount = 0;
 		}
