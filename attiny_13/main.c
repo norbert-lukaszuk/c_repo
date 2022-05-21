@@ -1,5 +1,6 @@
 #include <avr/io.h>
 #include <util/delay.h>
+#include <avr/interrupt.h>
 #define LED PB3
 #define BUTTON PB4
 
@@ -13,7 +14,8 @@ int main(void){
 	TCCR0A |= 1<<WGM01;
 	OCR0A = 250;
 	TIMSK0 |= 1<<OCIE0A;
-
+	GIMSK |= 1<<PCIE; // anable interrupts on
+	PCMSK |= 1<<PCINT4; // enable pin PCINT4 to make interrupts
 
 
 	while(1){
@@ -38,6 +40,14 @@ void toggle_led(void){
 				}
 }
 ISR(TIM0_COMPA_vect){
-//	PORTB ^= 1<<LED;
+		 toggle_led();
 }
+ISR(PCINT0_vect){
 
+	for(uint8_t i=0; i<30;i++){
+		PORTB ^= 1<<LED;
+			_delay_ms(60);
+
+	}
+
+}
