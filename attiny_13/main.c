@@ -56,11 +56,15 @@ ISR(TIM0_COMPB_vect){
 			}
 }
 ISR(PCINT0_vect){
+if(!(PINB & 1<<BUTTON)){
 
 	for(uint8_t i=0; i<30;i++){
-		PORTB ^= 1<<LED1;
-			_delay_ms(60);
+			PORTB ^= 1<<LED1;
+			PORTB ^= 1<<LED2;
+				_delay_ms(60);
 
-	}
+		}
+}
+
 
 }
