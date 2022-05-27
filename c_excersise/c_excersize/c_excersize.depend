@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1653651399 source:c:\dev\c_repo\c_excersise\c_excersize\main.c
+	<stdio.h>
+	<stdlib.h>
+
